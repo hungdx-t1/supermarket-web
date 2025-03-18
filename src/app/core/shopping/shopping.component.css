@@ -35,7 +35,7 @@ h1 {
     text-align: center;
 
     /* Thêm khoảng cách xung quanh chữ (padding) */
-    padding: 4px;
+    padding: 4rem;
 
     /* Đặt kích thước chữ là 1.5rem (relative to the root font size) */
     font-size: 1.5rem;
@@ -93,7 +93,7 @@ h1 {
     padding: 1rem;
 }
 
-.shop-item-1, .shop-item-2, .shop-item-3 {
+.shop-items {
     /* Sử dụng flexbox để căn giữa các phần tử theo chiều dọc */
     display: flex;
     align-items: center;
