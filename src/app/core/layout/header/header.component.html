@@ -1,6 +1,7 @@
 <div class="header-layout">
     <div class="web-logo">
-      <svg
+      <a [routerLink]="['']">
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 982 239"
           fill="none"
@@ -44,11 +45,20 @@
             </linearGradient>
             <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
           </defs>
-        </svg>        
+        </svg> 
+      </a>       
     </div>
     <div class="group-navigation">
-      <div class="btn-navigation"><img src="assets/images/shopping-cart.png" alt="Shopping Cart" width="30px" height="30px"></div>
-      <div class="btn-navigation"><img src="assets/images/shopping-icon.png" alt="Buy" width="30px" height="30px"></div>
-      <div class="btn-navigation"><img src="assets/images/account-icon.png" alt="Account" width="30px" height="30px"></div>
+      <div class="btn-navigation">
+        <a [routerLink]="['']">
+          <img src="assets/images/shopping-icon.png" alt="Buy" width="30px" height="30px">
+        </a>
+      </div>
+      <div class="btn-navigation">
+        <img src="assets/images/shopping-cart.png" alt="Shopping Cart" width="30px" height="30px">
+      </div>
+      <div class="btn-navigation">
+        <img src="assets/images/account-icon.png" alt="Account" width="30px" height="30px">
+      </div>
     </div>
 </div>
