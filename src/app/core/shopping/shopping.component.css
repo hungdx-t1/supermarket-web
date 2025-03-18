@@ -1,0 +1,110 @@
+.shopping-container {
+    /* 
+        Sử dụng màu gradient 
+        (nền chuyển màu từ #d434b0 đến #8029fc theo chiều ngang) 
+    */
+    background-image: linear-gradient(to right, #d434b0, #8029fc);
+
+    /* tràn màn hình trải dài từ trên xuống */
+    /* Đặt chiều cao phần tử bằng chiều cao màn hình gấp đôi trừ đi 70px */
+    height: calc(200vh - 70px); 
+
+    /* Căn giữa các phần tử bên trong (theo chiều dọc) */
+    align-items: center;
+
+    /* Sử dụng font chữ Montserrat, nếu không có sẽ dùng font serif */
+    font-family: "Montserrat", serif;
+
+    /* Tự động điều chỉnh kích thước chữ theo đặc điểm của font */
+    font-optical-sizing: auto;
+
+    /* Đặt kiểu chữ là bình thường (không nghiêng) */
+    font-style: normal;
+}
+
+.shop-header {
+    /* Căn giữa nội dung trong thẻ h1 */
+    text-align: center;
+}
+
+h1 {
+    /* Đặt màu chữ thành trắng */
+    color: #fff;
+
+    /* Căn giữa nội dung trong thẻ h1 */
+    text-align: center;
+
+    /* Thêm khoảng cách xung quanh chữ (padding) */
+    padding: 4px;
+
+    /* Đặt kích thước chữ là 1.5rem (relative to the root font size) */
+    font-size: 1.5rem;
+}
+
+.shop-body {
+    /* Đặt chiều rộng của phần thân mua sắm là 75% của chiều rộng màn hình */
+    width: 75%;
+
+    /* Căn giữa phần tử trong container */
+    margin: auto;
+
+    /* Đặt màu nền của phần thân mua sắm là trắng */
+    background: #fff;
+
+    /* Thêm padding (khoảng cách bên trong) để tạo khoảng cách giữa nội dung và viền */
+    padding: 2rem;
+
+    /* Làm bo góc cho phần tử, tạo hiệu ứng viền mềm mại */
+    border-radius: 4px;
+}
+
+.shop-table-head {
+    /* Sử dụng flexbox để sắp xếp các cột theo hàng ngang */
+    display: flex;
+
+    /* Thêm padding xung quanh phần tử để tạo khoảng cách */
+    padding: 1rem;
+
+    /* Đặt màu nền cho phần đầu bảng là màu xám sáng */
+    background: #e2e2e2;
+
+    /* Chuyển toàn bộ chữ thành in hoa */
+    text-transform: uppercase;
+
+    /* Đặt độ đậm của chữ */
+    font-weight: 600;
+
+    /* Đặt kích thước chữ là 12px */
+    font-size: 12px;
+}
+
+.shop-content {
+    /* Sử dụng flexbox để sắp xếp các mục trong phần nội dung theo chiều dọc */
+    display: flex;
+    flex-direction: column;
+
+    /* Đặt khoảng cách giữa các mục theo chiều dọc */
+    row-gap: 1rem;
+
+    /* Thêm khoảng cách ở phía trên của phần nội dung */
+    margin-top: 1rem;
+
+    /* Thêm padding xung quanh phần tử */
+    padding: 1rem;
+}
+
+.shop-item-1, .shop-item-2, .shop-item-3 {
+    /* Sử dụng flexbox để căn giữa các phần tử theo chiều dọc */
+    display: flex;
+    align-items: center;
+}
+
+.col-1, .col-3, .col-4 {
+    /* Cả 3 cột này đều sử dụng flex-grow để chiếm phần không gian tương ứng */
+    flex: 1;
+}
+
+.col-2 {
+    /* Cột này chiếm không gian lớn hơn so với các cột khác */
+    flex: 1.5;
+}

@@ -50,8 +50,8 @@ export class Test1Component {
   // 4. Event với directive
   // Angular cũng cung cấp các sự kiện cho các directive đặc biệt như ngIf, ngFor. Bạn có thể bắt các sự kiện của directive này để xử lý khi chúng thay đổi.
   // ví dụ về ngFor
-  onItemClick(item) {
-    console.log('Item clicked:', item);
-  }
+  // onItemClick(item) {
+  //   console.log('Item clicked:', item);
+  // }
   
 }

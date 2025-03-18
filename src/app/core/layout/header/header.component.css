@@ -1,5 +1,6 @@
 .web-logo svg {
     width: 120px;
+    cursor: pointer;
 }
 
 .header-layout {
