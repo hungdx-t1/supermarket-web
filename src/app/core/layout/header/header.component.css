@@ -1,0 +1,13 @@
+.web-logo svg {
+    width: 120px;
+}
+
+.header {
+    display: flex; /* hiển thị trong cùng 1 hàng */
+    justify-content: space-between; /* được cách nhau sau mỗi div */
+    padding: 4px 8px;
+}
+
+.header .btn-navigation {
+    display: flex;
+}
