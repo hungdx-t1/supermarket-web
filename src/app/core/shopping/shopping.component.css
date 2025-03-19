@@ -7,7 +7,9 @@
 
     /* tràn màn hình trải dài từ trên xuống */
     /* Đặt chiều cao phần tử bằng chiều cao màn hình gấp đôi trừ đi 70px */
-    height: calc(200vh - 70px); 
+    
+    /* Nếu chiều cao đặt là auto, sẽ tự động căn chỉnh chiều cao sao cho vừa với nội dung*/
+    height: auto; 
 
     /* Căn giữa các phần tử bên trong (theo chiều dọc) */
     align-items: center;
@@ -20,6 +22,8 @@
 
     /* Đặt kiểu chữ là bình thường (không nghiêng) */
     font-style: normal;
+    
+    padding-bottom: 4rem;
 }
 
 h1 {

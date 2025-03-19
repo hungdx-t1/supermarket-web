@@ -27,9 +27,11 @@
                         alt=""
                         width="50px"
                         height="auto"
+                        (click)="deleteHandler(product.id)"
                     >
                 </div>
             </div>
         </ng-container>
     </div>
+    Tổng tiền: {{ totalPrice | currencyPipe }}
 </div>

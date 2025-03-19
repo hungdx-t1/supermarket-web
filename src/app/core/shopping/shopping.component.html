@@ -1,4 +1,8 @@
 <div class="shopping-container">
     <h1>Mua nhanh</h1>
-    <app-product-item [products]="products"></app-product-item>
+    <app-product-item 
+        [products]="products"
+        (dataEvent)="deleteHandler($event)"
+    ></app-product-item>
+    <!-- Ở đây, deleteHandler($event) sẽ được khai báo ở trong shopping component! -->
 </div>
