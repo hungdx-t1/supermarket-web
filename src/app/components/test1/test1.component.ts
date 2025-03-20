@@ -78,10 +78,52 @@ export class Test1Component {
   // Timeout/interval: vd đặt 5 giây sd 1 thao tác nào đó, nhưng 3 giây
   // là đã tắt cpn r, nên phải cần ngOnDestroy.
   // Đối với dự án lớn thì gặp ngOnDestroy thường xuyên
-  
 
 
+ /*
+  Vòng đời (lifecycle)
+  Angular cung cấp các hook lifecycle giúp bạn theo dõi và tương tác với các trạng thái của component hoặc directive. Dưới đây là các lifecycle hook trong Angular:
 
+  1. Constructor
+  Được chạy khi khởi tạo component. Dùng để khởi tạo các thuộc tính hoặc phụ thuộc vào các dịch vụ.
+  Ví dụ: khai báo dịch vụ hoặc thiết lập các giá trị mặc định.
+  Constructor không nên chứa logic phức tạp, chỉ dùng cho khởi tạo.
 
+  2. ngOnInit
+  Được gọi sau khi component được khởi tạo và các thuộc tính đầu tiên đã được gán giá trị.
+  Thích hợp để thực hiện các hành động phụ thuộc vào dữ liệu ban đầu, như gọi API hoặc thiết lập các giá trị.
+  Đây là nơi chính để bắt đầu công việc.
 
+  3. ngOnChanges
+  Được gọi khi một trong các input properties của component thay đổi.
+  Hook này nhận vào đối số là `SimpleChanges`, cho phép bạn biết những thuộc tính nào đã thay đổi.
+  Nguyên lý: Khi dữ liệu từ component cha được truyền xuống, `ngOnChanges` sẽ được kích hoạt.
+
+  4. ngDoCheck
+  Đây là hook kiểm tra sự thay đổi của dữ liệu. Nó được gọi mỗi khi Angular thực hiện change detection.
+  Nên sử dụng với cẩn thận vì nó có thể khiến ứng dụng bị chậm nếu không cần thiết.
+  Không nên dùng để theo dõi trực tiếp thay đổi dữ liệu từ DOM.
+
+  5. ngAfterContentInit
+  Được gọi một lần sau khi Angular đã chiếu nội dung của component vào trong DOM.
+  Ví dụ: nếu bạn muốn làm gì đó sau khi Angular đã xử lý các `ng-content` hoặc các phần tử con trong component.
+
+  6. ngAfterContentChecked
+  Được gọi sau khi nội dung đã được kiểm tra.
+  Đây là nơi bạn có thể kiểm tra các thay đổi sau khi Angular kiểm tra sự thay đổi nội dung của component.
+
+  7. ngAfterViewInit
+  Được gọi một lần sau khi view của component đã được khởi tạo.
+  Thích hợp để thực hiện các thao tác cần thiết sau khi view đã được hoàn tất.
+
+  8. ngAfterViewChecked
+  Được gọi sau mỗi lần Angular kiểm tra và cập nhật view của component.
+  Có thể dùng để theo dõi các thay đổi của DOM sau mỗi lần cập nhật.
+
+  9. ngOnDestroy
+  Được gọi trước khi component bị hủy.
+  Sử dụng để dọn dẹp các tài nguyên hoặc unsubscribe các subscriptions, hoặc thực hiện các thao tác khác để tránh rò rỉ bộ nhớ.
+  Ví dụ: khi người dùng thoát khỏi một màn hình chat, cần hủy các dịch vụ hoặc subscription liên quan.
+
+*/
 }
