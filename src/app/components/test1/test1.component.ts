@@ -126,4 +126,13 @@ export class Test1Component {
   Ví dụ: khi người dùng thoát khỏi một màn hình chat, cần hủy các dịch vụ hoặc subscription liên quan.
 
 */
+
+/**
+ * Observable
+ * Thường để xử lý dữ liệu bất đồng bộ, hoặc api, behaviour, timer (timeout, interval)
+ * Ví dụ: khi mình đăng ký 1 kênh trên youtube, thì sẽ nhận 1 hành động để theo dõi dữ liệu, khi kênh ra 1 video mới, thì mình sẽ
+ * nhận được 1 thông báo video mới (thông báo đó đến từ Observable), cho đến khi mình tắt thông báo thì observable không còn thông
+ * báo nữa
+ * 
+ */
 }

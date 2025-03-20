@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import { ProductItemComponent } from "../model/product-item/product-item.component";
 import { ProductItems } from '../type/productItem';
 import { HttpClient } from '@angular/common/http';
 import { isNgTemplate } from '@angular/compiler';
 import { BlogService } from '../services/BlogService';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping',
@@ -16,9 +17,12 @@ import { BlogService } from '../services/BlogService';
   templateUrl: './shopping.component.html',
   styleUrl: './shopping.component.css'
 })
-export class ShoppingComponent implements OnInit {
+export class ShoppingComponent implements OnInit, OnDestroy {
 
   isVisible = true;
+
+  // Tạo subcription cho observable
+  getBlogAPI: Subscription;
 
   // Khai báo mảng để dùng ngFor
   products: ProductItems[] = [
@@ -32,6 +36,7 @@ export class ShoppingComponent implements OnInit {
 
   constructor(private blogService: BlogService) {
     console.log('Initializing ShoppingComponent...');
+    this.getBlogAPI = new Subscription();
   }
 
   /*
@@ -69,7 +74,7 @@ export class ShoppingComponent implements OnInit {
     console.log('Initialized ShoppingComponent!');
     
     // Gửi yêu cầu HTTP GET đến API để lấy dữ liệu từ server
-    this.blogService.getBlog()
+    this.getBlogAPI = this.blogService.getBlog()
       .subscribe(({ data }) => { // Lắng nghe phản hồi từ API, trích xuất dữ liệu từ response
         // Chuyển đổi dữ liệu từ API thành danh sách sản phẩm
         this.products = data.map((item: any) => { // Duyệt qua từng phần tử trong mảng `data`
@@ -83,6 +88,12 @@ export class ShoppingComponent implements OnInit {
           }
         });
       })
+  }
+
+  ngOnDestroy(): void {
+    if(this.getBlogAPI) {
+      this.getBlogAPI.unsubscribe();
+    }
   }
 
   // đối với c++ thì có delHandler(event), thì ts có delHandler = (event)
