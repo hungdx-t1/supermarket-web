@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { ProductItems } from '../../type/productItem';
 import { UpperCasePipe } from '../../pipes/UpperCasePipe.pipe';
 import { CurrencyPipe } from '../../pipes/CurrencyPipe.pipe';
@@ -18,7 +18,7 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './product-item.component.css'
 })
 
-export class ProductItemComponent {
+export class ProductItemComponent implements OnChanges, OnDestroy {
   // Đây là component con
   @Input() products : ProductItems[] = [];
 
@@ -41,5 +41,22 @@ export class ProductItemComponent {
 
     // return `Tổng tiền: ${sum}`; // lưu ý: return này sử dụng dấu ` để nhận định ${sum} là 1 biến
     return sum;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['products'].currentValue);
+
+    // Hiển thị giá trị trước khi thay đổi nội dung (ví dụ thêm xóa sửa)
+    console.log(changes['products'].previousValue);
+  }
+  
+  // Điểm lưu ý: nếu sử dụng phương thức splice, nó chỉ cắt mất
+  // phần dữ liệu mà thôi, không ảnh hưởng đến dữ liệu, nên nếu dùng
+  // phương thức splice sẽ không tác động gì đến ngOnChanges cả.
+  // Nếu muốn xóa dữ liệu, sử dụng phương thức filter.
+  // this.products = this.products.filter((item) => item.id !== id)
+
+  ngOnDestroy(): void {
+    console.log('ProductItemComponent is removed.');
   }
 }

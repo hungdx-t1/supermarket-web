@@ -1,8 +1,12 @@
 <div class="shopping-container">
     <h1>Mua nhanh</h1>
-    <app-product-item 
-        [products]="products"
-        (dataEvent)="deleteHandler($event)"
-    ></app-product-item>
+
+    <div *ngIf="isVisible">
+        <app-product-item 
+            [products]="products"
+            (dataEvent)="deleteHandler($event)"
+        ></app-product-item>
+    </div>
+    <button (click)="changeVisibility()">Ẩn tất cả</button>
     <!-- Ở đây, deleteHandler($event) sẽ được khai báo ở trong shopping component! -->
 </div>

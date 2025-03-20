@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { ProductItemComponent } from "../model/product-item/product-item.component";
 import { ProductItems } from '../type/productItem';
 
@@ -8,11 +8,14 @@ import { ProductItems } from '../type/productItem';
   imports: [
     CommonModule,
     ProductItemComponent,
+    NgIf
 ],
   templateUrl: './shopping.component.html',
   styleUrl: './shopping.component.css'
 })
 export class ShoppingComponent {
+
+  isVisible = true;
 
   // Khai báo mảng để dùng ngFor
   products: ProductItems[] = [
@@ -27,14 +30,21 @@ export class ShoppingComponent {
   // đối với c++ thì có delHandler(event), thì ts có delHandler = (event)
   // phương thức xóa một sản phẩm (product) khỏi danh sách sản phẩm bày bán
   deleteHandler = (id: number) => {
-    // Tìm vị trí (index) của sản phẩm trong mảng `products` có id trùng với id truyền vào
-    const productIndex = this.products.findIndex(item => item.id == id);
+    // // -- Tìm vị trí (index) của sản phẩm trong mảng `products` có id trùng với id truyền vào
+    // const productIndex = this.products.findIndex(item => item.id == id);
     
-    // Nếu tìm thấy sản phẩm (chỉ mục không phải -1)
-    if(productIndex !== -1) {
-      // Xóa sản phẩm khỏi mảng `products` tại vị trí `productIndex`, chỉ xóa 1 phần tử
-      this.products.splice(productIndex, 1);
-      console.log("Đã xóa item ",id);
-    }
+    // // -- Nếu tìm thấy sản phẩm (chỉ mục không phải -1)
+    // if(productIndex !== -1) {
+    //   // -- Xóa sản phẩm khỏi mảng `products` tại vị trí `productIndex`, chỉ xóa 1 phần tử
+    //   this.products.splice(productIndex, 1);
+    //   console.log("Đã xóa item ",id);
+    // }
+
+    this.products = this.products.filter((item) => item.id !== id)
   }
+
+  changeVisibility = () => {
+    this.isVisible = false;
+  }
+
 }
