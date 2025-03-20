@@ -1,24 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
-import { ProductItemComponent } from "../model/product-item/product-item.component";
+import { ProductItemComponent } from '../model/product-item/product-item.component';
 import { ProductItems } from '../type/productItem';
 import { HttpClient } from '@angular/common/http';
 import { isNgTemplate } from '@angular/compiler';
 import { BlogService } from '../services/BlogService';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping',
-  imports: [
-    CommonModule,
-    ProductItemComponent,
-    NgIf
-],
+  imports: [CommonModule, ProductItemComponent, NgIf],
   templateUrl: './shopping.component.html',
-  styleUrl: './shopping.component.css'
+  styleUrl: './shopping.component.css',
 })
 export class ShoppingComponent implements OnInit, OnDestroy {
-
   isVisible = true;
 
   // Tạo subcription cho observable
@@ -26,12 +21,48 @@ export class ShoppingComponent implements OnInit, OnDestroy {
 
   // Khai báo mảng để dùng ngFor
   products: ProductItems[] = [
-    {id: 1, name: 'Bóng rổ rẻ tiền', price: 250000, isActive: true, img: 'assets/images/pngtree-basketball-png-image_8974603.png'},
-    {id: 2, name: 'Tivi rẻ tiền', price: 750000, isActive: true, img: 'assets/images/pngtree-old-television-red-png-image_8876940.png'},
-    {id: 3, name: 'Ghế sofa rẻ tiền', price: 1900000, isActive: true, img: 'assets/images/sofa-chair.png'},
-    {id: 4, name: 'Giày NIKE rẻ tiền', price: 200000, isActive: true, img: 'assets/images/pngtree-basketball-png-image_8974603.png'},
-    {id: 5, name: 'Tivi cải tiến', price: 3000000, isActive: true, img: 'assets/images/pngtree-old-television-red-png-image_8876940.png'},
-    {id: 6, name: 'Tivi cao cấp', price: 4500000, isActive: true, img: 'assets/images/pngtree-old-television-red-png-image_8876940.png'},
+    {
+      id: 1,
+      name: 'Bóng rổ rẻ tiền',
+      price: 250000,
+      isActive: true,
+      img: 'assets/images/pngtree-basketball-png-image_8974603.png',
+    },
+    {
+      id: 2,
+      name: 'Tivi rẻ tiền',
+      price: 750000,
+      isActive: true,
+      img: 'assets/images/pngtree-old-television-red-png-image_8876940.png',
+    },
+    {
+      id: 3,
+      name: 'Ghế sofa rẻ tiền',
+      price: 1900000,
+      isActive: true,
+      img: 'assets/images/sofa-chair.png',
+    },
+    {
+      id: 4,
+      name: 'Giày NIKE rẻ tiền',
+      price: 200000,
+      isActive: true,
+      img: 'assets/images/pngtree-basketball-png-image_8974603.png',
+    },
+    {
+      id: 5,
+      name: 'Tivi cải tiến',
+      price: 3000000,
+      isActive: true,
+      img: 'assets/images/pngtree-old-television-red-png-image_8876940.png',
+    },
+    {
+      id: 6,
+      name: 'Tivi cao cấp',
+      price: 4500000,
+      isActive: true,
+      img: 'assets/images/pngtree-old-television-red-png-image_8876940.png',
+    },
   ];
 
   constructor(private blogService: BlogService) {
@@ -69,6 +100,8 @@ export class ShoppingComponent implements OnInit, OnDestroy {
 
   */
 
+  /*
+    Phần ngOnInit cũ
   ngOnInit(): void {
     // In ra console để xác nhận rằng component đã được khởi tạo
     console.log('Initialized ShoppingComponent!');
@@ -89,9 +122,34 @@ export class ShoppingComponent implements OnInit, OnDestroy {
         });
       })
   }
+  
+  */
+
+  ngOnInit(): void {
+    this.getBlogAPI = this.blogService
+      .getBlog()
+      .pipe(
+        map(({ data }) =>
+          data.map((item: any) => {
+            // Duyệt qua từng phần tử trong mảng `data`
+            return {
+              ...item, // Sao chép toàn bộ thuộc tính gốc từ `item`
+              price: Number(item.body), // Chuyển `body` từ dạng chuỗi sang số và gán vào `price`
+              img: 'assets/images/pngtree-old-television-red-png-image_8876940.png', // Gán ảnh mặc định cho sản phẩm
+              name: item.title, // Chuyển trường `title` của API thành `name` (tên sản phẩm)
+              id: item.id,
+              isActive: true, // Mặc định tất cả sản phẩm được hiển thị (active)
+            };
+          }).filter(product => product.price > 400000) // lọc price dưới 400000
+        ),
+      )
+      .subscribe((res) => {
+        this.products = res;
+      });
+  }
 
   ngOnDestroy(): void {
-    if(this.getBlogAPI) {
+    if (this.getBlogAPI) {
       this.getBlogAPI.unsubscribe();
     }
   }
@@ -101,7 +159,7 @@ export class ShoppingComponent implements OnInit, OnDestroy {
   deleteHandler = (id: number) => {
     // // -- Tìm vị trí (index) của sản phẩm trong mảng `products` có id trùng với id truyền vào
     // const productIndex = this.products.findIndex(item => item.id == id);
-    
+
     // // -- Nếu tìm thấy sản phẩm (chỉ mục không phải -1)
     // if(productIndex !== -1) {
     //   // -- Xóa sản phẩm khỏi mảng `products` tại vị trí `productIndex`, chỉ xóa 1 phần tử
@@ -109,11 +167,10 @@ export class ShoppingComponent implements OnInit, OnDestroy {
     //   console.log("Đã xóa item ",id);
     // }
 
-    this.products = this.products.filter((item) => item.id !== id)
-  }
+    this.products = this.products.filter((item) => item.id !== id);
+  };
 
   changeVisibility = () => {
     this.isVisible = false;
-  }
-
+  };
 }
