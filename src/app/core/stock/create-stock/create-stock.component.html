@@ -1,0 +1,23 @@
+<div class="create-stock-container">
+  <h2>Create Stock</h2>
+  <div class="create-form">
+    <div class="form-control">
+      <label>Tên cổ phần</label>
+      <div>
+        <input type="text" id="name" [formControl]="stockName" placeholder="Nhập tên cổ phần ở đây..." />
+      </div>
+    </div>
+    <div class="form-control">
+      <label>Mã cổ phần</label>
+      <div>
+        <input type="text" id="code" [formControl]="stockCode" placeholder="Nhập mã cổ phần ở đây..." />
+      </div>
+    </div>
+    <div class="form-control">
+      <label>Giá cổ phần</label>
+      <div><input type="number" id="price" [formControl]="stockPrice" /></div>
+    </div>
+    <div class="btn-create" (click)="addStockHandler()">Tạo cổ phần</div>
+    <div class="btn-back">Bạn muốn quay lại? Bấm vào <a [routerLink]="['/stock']">đây</a></div>
+  </div>
+</div>

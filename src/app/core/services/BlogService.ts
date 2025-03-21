@@ -33,4 +33,8 @@ export class BlogService {
      * nhận được 1 thông báo video mới (thông báo đó đến từ Observable), cho đến khi mình tắt thông báo thì observable không còn thông
      * báo nữa
      */
+
+    getDetailProduct(id: number): Observable<ResponseData<ProductItems>> {
+        return this.http.get<any>(`https://ninedev-api.vercel.app/blogs/${id}`);
+    }
 }

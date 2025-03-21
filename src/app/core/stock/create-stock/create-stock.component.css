@@ -1,8 +1,4 @@
-.detail-container {
-    /* 
-        Sử dụng màu gradient 
-        (nền chuyển màu từ #d434b0 đến #8029fc theo chiều ngang) 
-    */
+.create-stock-container {
     background-image: linear-gradient(to right, #d434b0, #8029fc);
 
     /* tràn màn hình trải dài từ trên xuống */
@@ -26,8 +22,7 @@
     padding-bottom: 4rem;
 }
 
-.detail-header h1 {
-    /* Đặt màu chữ thành trắng */
+h2 {
     color: #fff;
 
     /* Căn giữa nội dung trong thẻ h1 */
@@ -40,16 +35,46 @@
     font-size: 1.5rem;
 }
 
-.item-display {
-    padding: 0 3rem;
+.create-form {
+    width: 70%;
+    padding: 1.2rem;
+    background-color: white;
+    border-radius: 6px;
+    margin: auto;
 }
 
-.item-display img {
-    height: auto;
+.form-control {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+.form-control input {
+    /* Chiều ngang*/
     width: 100%;
+
+    outline: none;
+    border: none;
+
+    padding: .8rem;
+    border-radius: 4px;
+    background-color: #e2e2e2;
 }
 
-h3, h4 {
-    font-family: Calibri, 'Times New Roman', Times, serif;
-    color: #fff;
+.btn-create {
+    background-image: linear-gradient(to right, #d434b0, #8029fc); /* đổ màu từ hồng sang tím */
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    align-items: center;
+    cursor: pointer;
+    padding: .55rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
