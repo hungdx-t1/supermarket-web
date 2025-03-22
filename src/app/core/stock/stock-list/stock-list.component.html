@@ -1,0 +1,5 @@
+<div *ngFor="let stock of stocks" class="stock-container">
+  <app-stock-item [stock]="stock"></app-stock-item>
+  <!-- <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item> -->
+</div>
+<p>Bấm vào <a [routerLink]="['/stock/create']">đây</a> để tạo một stock mới!</p>

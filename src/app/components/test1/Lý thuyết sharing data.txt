@@ -1,0 +1,144 @@
+Trong Angular, việc chia sẻ dữ liệu giữa các thành phần (component) là một phần quan trọng trong việc xây dựng ứng dụng.
+Có nhiều cách để chia sẻ dữ liệu giữa các component trong Angular, bao gồm sử dụng @Input(), @Output(), ViewChild, Service, và EventEmitter.
+Dưới đây là sự giải thích chi tiết về từng phương pháp:
+
+1. @Input() - Chia sẻ dữ liệu từ Parent Component sang Child Component
+Mục đích: @Input() được sử dụng để truyền dữ liệu từ Parent (component cha) vào Child (component con).
+Cách thức hoạt động: Một component con có thể nhận dữ liệu từ component cha thông qua một thuộc tính được đánh dấu bằng @Input().
+
+```
+// Parent Component
+@Component({
+  selector: 'app-parent',
+  template: `<app-child [message]="parentMessage"></app-child>`
+})
+export class ParentComponent {
+  parentMessage = 'Hello from Parent!';
+}
+
+// Child Component
+@Component({
+  selector: 'app-child',
+  template: `<p>{{ message }}</p>`
+})
+export class ChildComponent {
+  @Input() message: string;  // Nhận dữ liệu từ component cha
+}
+```
+
+Trong ví dụ trên, component ParentComponent truyền giá trị của parentMessage vào thuộc tính message của ChildComponent thông qua @Input().
+
+2. @Output() và EventEmitter - Chia sẻ dữ liệu từ Child Component sang Parent Component
+Mục đích: @Output() kết hợp với EventEmitter được sử dụng để truyền dữ liệu hoặc phát ra sự kiện từ Child (component con) lên Parent (component cha).
+Cách thức hoạt động: Component con phát ra sự kiện (thông qua EventEmitter), và component cha đăng ký lắng nghe sự kiện đó.
+```
+// Parent Component
+@Component({
+  selector: 'app-parent',
+  template: `<app-child (childEvent)="receiveMessage($event)"></app-child>`
+})
+export class ParentComponent {
+  receiveMessage(data: string) {
+    console.log('Received from Child: ' + data);
+  }
+}
+
+// Child Component
+@Component({
+  selector: 'app-child',
+  template: `<button (click)="sendMessage()">Send Message</button>`
+})
+export class ChildComponent {
+  @Output() childEvent = new EventEmitter<string>();
+
+  sendMessage() {
+    this.childEvent.emit('Hello from Child!');
+  }
+}
+```
+
+Trong ví dụ này, khi người dùng nhấn nút trong component con, sự kiện childEvent được phát ra và được ParentComponent lắng nghe.
+ Khi sự kiện được kích hoạt, hàm receiveMessage() trong component cha sẽ nhận dữ liệu được gửi từ con.
+
+3. ViewChild - Truy cập các thành phần con trong component cha
+Mục đích: ViewChild được sử dụng để truy cập vào các thành phần con của component cha và thực hiện các thao tác với các thành phần con đó.
+Cách thức hoạt động: Bạn có thể sử dụng ViewChild để lấy đối tượng Component, Directive, hoặc DOM Element của một thành phần con.
+```
+// Parent Component
+@Component({
+  selector: 'app-parent',
+  template: `<app-child #childComponent></app-child>
+             <button (click)="callChildMethod()">Call Child Method</button>`
+})
+export class ParentComponent {
+  @ViewChild('childComponent') child: ChildComponent;
+
+  callChildMethod() {
+    this.child.someMethod();  // Gọi phương thức trong ChildComponent
+  }
+}
+
+// Child Component
+@Component({
+  selector: 'app-child',
+  template: `<p>Child Component</p>`
+})
+export class ChildComponent {
+  someMethod() {
+    console.log('Method in Child called!');
+  }
+}
+```
+Trong ví dụ trên, component cha ParentComponent truy cập vào component con ChildComponent bằng cách sử dụng @ViewChild('childComponent'). 
+Sau đó, khi nhấn nút trong cha, phương thức someMethod() trong component con được gọi.
+
+4. Service - Chia sẻ dữ liệu giữa các component không có quan hệ cha-con
+Mục đích: Service là một cách để chia sẻ dữ liệu giữa các component không có quan hệ cha-con (hoặc các component ở các cấp khác nhau trong cây component).
+Cách thức hoạt động: Dữ liệu được lưu trữ trong service và các component khác có thể truy cập vào service này để lấy hoặc thay đổi dữ liệu.
+
+// Service
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  private data: string = 'Initial Data';
+
+  getData() {
+    return this.data;
+  }
+
+  setData(newData: string) {
+    this.data = newData;
+  }
+}
+
+// Component 1
+@Component({
+  selector: 'app-component1',
+  template: `<p>{{ data }}</p>`
+})
+export class Component1 {
+  data: string;
+
+  constructor(private dataService: DataService) {
+    this.data = this.dataService.getData();
+  }
+}
+
+// Component 2
+@Component({
+  selector: 'app-component2',
+  template: `<button (click)="updateData()">Update Data</button>`
+})
+export class Component2 {
+  constructor(private dataService: DataService) {}
+
+  updateData() {
+    this.dataService.setData('Updated Data');
+  }
+}
+
+
+Service (DataService) được sử dụng để lưu trữ và chia sẻ dữ liệu. 
+Các component Component1 và Component2 đều sử dụng DataService để lấy và thay đổi dữ liệu.
+Bằng cách sử dụng providedIn: 'root', service này có phạm vi toàn ứng dụng, nghĩa là dữ liệu sẽ được chia sẻ giữa mọi component trong ứng dụng.

@@ -5,3 +5,15 @@
 .negative {
     color: red;
 }
+
+.stock-container {
+    border: 3px solid-black;
+    border-color: black;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.stock-container .name h3, .stock-container .name h4 {
+    display: inline-block;
+}
