@@ -1,5 +1,17 @@
-<div *ngFor="let stock of stocks" class="stock-container">
-  <app-stock-item [stock]="stock"></app-stock-item>
-  <!-- <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item> -->
+<div class="list-container">
+  <h1>Danh sách cổ phần</h1>
+  <div class="list-header">
+    <div class="stock-name">Tên cổ phần</div>
+    <div class="stock-price">Giá cổ phần</div>
+    <div class="stock-btnNavigations">Điều hướng</div>
+  </div>
+  <div *ngFor="let stock of stocks$ | async" class="stock-container">
+    <app-stock-item
+      [stock]="stock"
+      (toggleFavorite)="onToggleFavorite($event)"
+      (deleteHandler)="onDelete($event)"
+    ></app-stock-item>
+    <!-- <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item> -->
+  </div>
 </div>
 <p>Bấm vào <a [routerLink]="['/stock/create']">đây</a> để tạo một stock mới!</p>

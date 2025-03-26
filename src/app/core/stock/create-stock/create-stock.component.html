@@ -1,7 +1,7 @@
 <div class="create-stock-container">
   <h2>Create Stock</h2>
-  <div *ngIf="message">{{ message }}</div>
   <div class="create-form" [formGroup]="stockItem">
+    <div *ngIf="message">{{ message }}</div>
     <div class="form-control">
       <label>Tên cổ phần</label>
       <div>
@@ -75,7 +75,7 @@
       <option value="NASDAQ">NASDAQ</option>
       <option value="OTHER">OTHER</option>
     </select>
-    <div class="form-control">
+    <div >
       <input
         type="checkbox"
         name=""
@@ -86,6 +86,8 @@
     </div>
 
     <div class="btn-navigate" (click)="createStock()">Tạo cổ phần</div>
+    <div class="btn-navigate" (click)="createStock2()">Tạo cổ phần (load vào API)</div>
+    <div class="btn-navigate" (click)="createRandomStockAPI()">Tạo cổ phần ngẫu nhiên (load vào API)</div>
     <div class="btn-navigate" (click)="loadStockServer()">Tải từ máy chủ</div>        
     <div class="btn-navigate" (click)="pathStockForm()">Path</div>
 

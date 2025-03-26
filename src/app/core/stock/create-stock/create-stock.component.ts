@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { Stock } from '../../models/stock';
 import { NgIf } from '@angular/common';
 import { StockService } from '../../services/StockService';
+import { HTTPServiceService } from '../../services/HTTPService';
 
 @Component({
   selector: 'app-create-stock',
@@ -38,7 +39,12 @@ export class CreateStockComponent {
     confirmed: new FormControl(false, Validators.requiredTrue),
   });
 
-  constructor(private fb: FormBuilder, private stockService: StockService) {
+  constructor(
+    private fb: FormBuilder,
+    private stockService: StockService,
+    private hSSS: HTTPServiceService
+  ) {
+    this.stock = new Stock('', '', 0, 0, 'NASDAQ');
     this.stockItem = this.fb.group({
       stockName: ['', [Validators.required, Validators.minLength(6)]],
       stockCode: ['', [Validators.required, Validators.minLength(2)]],
@@ -46,7 +52,6 @@ export class CreateStockComponent {
       stockExchange: ['', Validators.required],
       confirmed: [false, Validators.requiredTrue],
     });
-    this.stock = new Stock('', '', 0, 0, 'NASDAQ');
   }
 
   get stockName() {
@@ -106,7 +111,7 @@ export class CreateStockComponent {
   }
 
   createStock() {
-    // dấu ? dùng để kiểm tra xem đối tựogn đó có tồn tại (ko phải null hoặc undefined) trc khi gọi hoặc truy cập thuộc tính từ nó
+    // dấu ? dùng để kiểm tra xem đối tượng đó có tồn tại (ko phải null hoặc undefined) trc khi gọi hoặc truy cập thuộc tính từ nó
     // if (
     //   this.stockName?.hasError('required') ||
     //   this.stockCode?.hasError('required') ||
@@ -114,7 +119,8 @@ export class CreateStockComponent {
     // )
     //   return;
 
-    if (this.stockItem.invalid) {
+    /*
+     if (this.stockItem.invalid) {
       console.log('Form không hợp lệ!');
       return;
     }
@@ -139,5 +145,66 @@ export class CreateStockComponent {
       console.log('Form không hợp lệ!');
       return;
     }
+    */
+
+    // deprecated
+    // if (this.stockItem.valid) {
+    //   this.stockService.createStock(this.stock).subscribe((result: any) => {
+    //     this.message = result.msg;
+    //     this.stock = new Stock('', '', 0, 0, 'NASDAQ');
+    //   }, (err) => {
+    //     this.message = err.msg;
+    //   });
+    // } else {
+    //   console.error('Form không hợp lệ!');
+    // }
+
+    if (this.stockItem.valid) {
+      this.getStockInfoAfterEnter();
+      console.log('Triggered: Thêm mới stock', this.stock);
+      this.stockService.createStock(this.stock).subscribe({
+        next: () => {
+          this.message =
+            'Tạo mới cổ phiếu thành công với mã: ' + this.stock.code;
+          this.stock = new Stock(
+            String(this.stockName?.value),
+            String(this.stockCode?.value),
+            Number(this.stockPrice?.value),
+            0,
+            String(this.stockExchange?.value)
+          );
+        },
+        error: () => console.error('Điền form chưa đầy đủ hoặc không hợp lệ.'),
+      });
+    }
+  }
+
+  getStockInfoAfterEnter(): void {
+    this.stock.name = String(this.stockName?.value);
+    this.stock.code = String(this.stockName?.value);
+    this.stock.price = Number(this.stockPrice?.value);
+    this.stock.exchange = String(this.stockExchange?.value);
+  }
+
+  // rest-API
+  createStock2() {
+    if (this.stockItem.valid) {
+      const body = {
+        name: String(this.stockName?.value),
+        code: String(this.stockCode?.value),
+        price: Number(this.stockPrice?.value),
+        previousPrice: 0,
+        exchange: String(this.stockExchange?.value),
+        favorite: false,
+      };
+      console.log('Thêm stock vào API:', body);
+      this.hSSS.postStock(body).subscribe((data) => {
+        console.log('Đã thêm thành công stock mới:', data);
+      });
+    }
+  }
+
+  createRandomStockAPI() {
+
   }
 }

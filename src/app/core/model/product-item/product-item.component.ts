@@ -59,4 +59,8 @@ export class ProductItemComponent implements OnChanges, OnDestroy {
   ngOnDestroy(): void {
     console.log('ProductItemComponent is removed.');
   }
+
+  createRandomProduct() {
+    
+  }
 }

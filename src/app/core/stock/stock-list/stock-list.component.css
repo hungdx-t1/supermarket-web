@@ -1,3 +1,46 @@
-.stock-container {
-    display: flex;
+h1 {
+  /* Đặt màu chữ thành trắng */
+  color: #fff;
+
+  /* Căn giữa nội dung trong thẻ h1 */
+  text-align: center;
+
+  /* Thêm khoảng cách xung quanh chữ (padding) */
+  padding: 4rem;
+
+  /* Đặt kích thước chữ là 1.5rem (relative to the root font size) */
+  font-size: 1.5rem;
+}
+
+.list-container {
+  background-image: linear-gradient(to right, #d434b0, #8029fc);
+  height: auto;
+  align-items: center;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding-bottom: 4rem;
+}
+
+.list-header {
+  display: flex;
+  padding: 2rem;
+  background: #e2e2e2;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  margin: auto;
+  width: 75%;
+}
+
+.stock-name {
+  flex: 10;
+}
+
+.stock-price {
+  flex: 3;
+}
+
+.stock-btnNavigations {
+  flex: 5;
 }

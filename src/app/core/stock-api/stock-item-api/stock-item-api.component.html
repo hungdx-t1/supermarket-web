@@ -1,0 +1,35 @@
+<div class="stock-container">
+    <div class="stock-item">
+      <div class="stock-name">
+        {{ stock.name }} (<a [routerLink]="['/api/stock/info', stock.code]">{{
+          stock.code
+        }}</a
+        >)
+      </div>
+      <div
+        class="stock-price"
+        [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
+      >
+        $ {{ stock.price }}
+      </div>
+      <div class="stock-btnNavigations">
+        <div class="stock-btnFav">
+          <button (click)="onToggleFavorite($event)" *ngIf="!stock.favorite">
+            Thêm vào mục yêu thích
+          </button>
+          <button (click)="onToggleFavorite($event)" *ngIf="stock.favorite">
+            Xóa khỏi mục yêu thích
+          </button>
+        </div>
+        <div class="stock-edit">
+          <!-- <button (click)="onToggleFavorite($event)">Chỉnh sửa</button> -->
+          <button>Chỉnh sửa</button>
+        </div>
+        <div class="stock-remove">
+          <button (click)="onDeleteHandler($event)">Xóa</button>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+  

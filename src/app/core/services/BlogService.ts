@@ -37,4 +37,8 @@ export class BlogService {
     getDetailProduct(id: number): Observable<ResponseData<ProductItems>> {
         return this.http.get<any>(`https://ninedev-api.vercel.app/blogs/${id}`);
     }
+
+    createProduct(body: any | null): Observable<any> {
+        return this.http.post<any>('https://ninedev-api.vercel.app/blogs', body);
+    }
 }

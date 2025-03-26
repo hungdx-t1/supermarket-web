@@ -1,0 +1,75 @@
+<div class="create-stock-container">
+    <h2>Create Stock</h2>
+    <div class="create-form" [formGroup]="stockItem">
+      <div *ngIf="message">{{ message }}</div>
+      <div class="form-control">
+        <label>Tên cổ phần</label>
+        <div>
+          <input
+            type="text"
+            id="name"
+            formControlName="stockName"
+            placeholder="Nhập tên cổ phần ở đây..."
+          />
+        </div>
+        <div *ngIf="stockName?.touched || stockName?.dirty">
+          <div style="color: red" *ngIf="stockName?.hasError('required')">
+            Trường tên không được để trống!
+          </div>
+          <div style="color: red" *ngIf="stockName?.hasError('minLength')">
+            Độ dài kí tự phải ít nhất 6 chữ cái!
+          </div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label>Mã cổ phần</label>
+        <div>
+          <input
+            type="text"
+            id="code"
+            formControlName="stockCode"
+            placeholder="Nhập mã cổ phần ở đây..."
+          />
+        </div>
+        <div *ngIf="stockCode?.touched || stockCode?.dirty">
+          <div style="color: red" *ngIf="stockCode?.hasError('required')">
+            Trường tên không được để trống!
+          </div>
+          <div style="color: red" *ngIf="stockCode?.hasError('minLength')">
+            Độ dài kí tự phải ít nhất 2 chữ cái!
+          </div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label>Giá cổ phần</label>
+        <div><input type="number" id="price" formControlName="stockPrice" /></div>
+        <div *ngIf="stockPrice?.touched || stockPrice?.dirty">
+          <div style="color: red" *ngIf="stockPrice?.hasError('min')">
+            Giá cổ phần phải lớn hơn 0$!
+          </div>
+        </div>
+      </div>
+  
+      <select class="form-control" formControlName="stockExchange">
+        <option value="NYSE">NYSE</option>
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+      <div >
+        <input
+          type="checkbox"
+          name=""
+          class="form-checkbox"
+          formControlName="confirmed"
+        />
+        Tôi xác nhận thông tin cổ phần đã nhập là chính xác
+      </div>
+  
+      <div class="btn-navigate" (click)="createStock()">Tạo cổ phần (load vào API)</div>
+  
+      <div class="btn-back">
+        Bạn muốn quay lại? Bấm vào <a [routerLink]="['/stock']">đây</a>
+      </div>
+    </div>
+  </div>
+  

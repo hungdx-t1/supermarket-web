@@ -1,0 +1,47 @@
+.positive {
+    color: green;
+  }
+  
+  .negative {
+    color: red;
+  }
+  
+  .stock-container {
+      background-image: linear-gradient(to right, #d434b0, #8029fc);
+      height: auto; 
+      align-items: center;
+      font-family: "Montserrat", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+  }
+  
+  .stock-container .name h3,
+  .stock-container .name h4 {
+    display: inline-block;
+  }
+  
+  .stock-item {
+      display: flex;
+      align-items: center;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 4px;
+      width: 75%;
+  }
+  
+  .stock-name {
+    flex: 10;
+  }
+  
+  .stock-price {
+    flex: 3;
+  }
+  
+  .stock-btnNavigations {
+    flex: 5;
+    display: flex;
+    align-items: center;
+    column-gap: 0.4rem;
+  }
+  

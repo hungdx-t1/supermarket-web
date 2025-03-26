@@ -129,23 +129,37 @@ export class ShoppingComponent implements OnInit, OnDestroy {
     this.getBlogAPI = this.blogService
       .getBlog()
       .pipe(
-        map(({ data }) =>
-          data.map((item: any) => {
-            // Duyệt qua từng phần tử trong mảng `data`
-            return {
-              ...item, // Sao chép toàn bộ thuộc tính gốc từ `item`
-              price: Number(item.body), // Chuyển `body` từ dạng chuỗi sang số và gán vào `price`
-              img: 'assets/images/pngtree-old-television-red-png-image_8876940.png', // Gán ảnh mặc định cho sản phẩm
-              name: item.title, // Chuyển trường `title` của API thành `name` (tên sản phẩm)
-              id: item.id,
-              isActive: true, // Mặc định tất cả sản phẩm được hiển thị (active)
-            };
-          }).filter(product => product.price > 400000) // lọc price dưới 400000
-        ),
+        map(
+          ({ data }) =>
+            data
+              .map((item: any) => {
+                // Duyệt qua từng phần tử trong mảng `data`
+                return {
+                  ...item, // Sao chép toàn bộ thuộc tính gốc từ `item`
+                  price: Number(item.body), // Chuyển `body` từ dạng chuỗi sang số và gán vào `price`
+                  img: 'assets/images/pngtree-old-television-red-png-image_8876940.png', // Gán ảnh mặc định cho sản phẩm
+                  name: item.title, // Chuyển trường `title` của API thành `name` (tên sản phẩm)
+                  id: item.id,
+                  isActive: true, // Mặc định tất cả sản phẩm được hiển thị (active)
+                };
+              })
+              .filter((product) => product.price > 400000) // lọc price dưới 400000
+        )
       )
       .subscribe((res) => {
         this.products = res;
       });
+  }
+
+  createRandomProduct() {
+    const data = {
+      id: 3,
+      title: 'Test 1',
+      content: 'Nội dung Blog',
+    };
+    console.log('Dữ liệu đã được thêm mới vào API');
+    console.log(data);
+    this.getBlogAPI = this.blogService.createProduct(data).subscribe();
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,80 @@
+.create-stock-container {
+    background-image: linear-gradient(to right, #d434b0, #8029fc);
+
+    /* tràn màn hình trải dài từ trên xuống */
+    /* Đặt chiều cao phần tử bằng chiều cao màn hình gấp đôi trừ đi 70px */
+    
+    /* Nếu chiều cao đặt là auto, sẽ tự động căn chỉnh chiều cao sao cho vừa với nội dung*/
+    height: auto; 
+
+    /* Căn giữa các phần tử bên trong (theo chiều dọc) */
+    align-items: center;
+
+    /* Sử dụng font chữ Montserrat, nếu không có sẽ dùng font serif */
+    font-family: "Montserrat", serif;
+
+    /* Tự động điều chỉnh kích thước chữ theo đặc điểm của font */
+    font-optical-sizing: auto;
+
+    /* Đặt kiểu chữ là bình thường (không nghiêng) */
+    font-style: normal;
+    
+    padding-bottom: 4rem;
+}
+
+h2 {
+    color: #fff;
+
+    /* Căn giữa nội dung trong thẻ h1 */
+    text-align: center;
+
+    /* Thêm khoảng cách xung quanh chữ (padding) */
+    padding: 4rem;
+
+    /* Đặt kích thước chữ là 1.5rem (relative to the root font size) */
+    font-size: 1.5rem;
+}
+
+.create-form {
+    width: 70%;
+    padding: 1.2rem;
+    background-color: white;
+    border-radius: 6px;
+    margin: auto;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+.form-control input {
+    /* Chiều ngang*/
+    width: 100%;
+
+    outline: none;
+    border: none;
+
+    padding: .8rem;
+    border-radius: 4px;
+    background-color: #e2e2e2;
+}
+
+.btn-navigate {
+    background-image: linear-gradient(to right, #d434b0, #8029fc); /* đổ màu từ hồng sang tím */
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    align-items: center;
+    cursor: pointer;
+    padding: .55rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
