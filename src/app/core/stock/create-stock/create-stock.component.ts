@@ -198,7 +198,7 @@ export class CreateStockComponent {
         favorite: false,
       };
       console.log('Thêm stock vào API:', body);
-      this.hSSS.postStock(body).subscribe((data) => {
+      this.hSSS.addStock(body).subscribe((data) => {
         console.log('Đã thêm thành công stock mới:', data);
       });
     }

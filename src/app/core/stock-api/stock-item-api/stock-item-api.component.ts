@@ -11,11 +11,15 @@ import { StockService } from '../../services/StockService';
   templateUrl: './stock-item-api.component.html',
   styleUrl: './stock-item-api.component.css'
 })
-export class StockItemApiComponent {
+export class StockItemApiComponent implements OnInit {
   @Input() stock!: Stock; // chỉ ra rằng một biến hoặc thuộc tính không thể có giá trị null hoặc undefined
   @Output() toggleFavorite = new EventEmitter<Stock>();
   @Output() deleteHandler = new EventEmitter<Stock>();
   // thêm 2 sự kiện
+
+  ngOnInit(): void {
+    
+  }
 
   constructor(private stockService: StockService) {}
 

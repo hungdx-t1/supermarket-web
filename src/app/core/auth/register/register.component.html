@@ -1,0 +1,7 @@
+<h2>Đăng Ký</h2>
+<form (submit)="onRegister()">
+  <input type="text" placeholder="Tên đăng nhập" [(ngModel)]="username" name="username" required>
+  <input type="password" placeholder="Mật khẩu" [(ngModel)]="password" name="password" required>
+  <button type="submit">Đăng Ký</button>
+  <p *ngIf="message">{{ message }}</p>
+</form>

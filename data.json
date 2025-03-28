@@ -1,44 +1,78 @@
 {
-    "stocks": [
-      {
-        "id": 1,
-        "name": "Test Stock Company",
-        "code": "TSC",
-        "price": "85",
-        "previousPrice": "80",
-        "exchange": "NASDAQ",
-        "favorite": "false"
-      },
-      {
-        "id": 2,
-        "name": "Second Stock Company",
-        "code": "SSC",
-        "price": "10",
-        "previousPrice": "20",
-        "exchange": "NSE",
-        "favorite": "false"
-      },
-      {
-        "id": 3,
-        "name": "Last Stock Company",
-        "code": "LSC",
-        "price": "876",
-        "previousPrice": "765",
-        "exchange": "NYSE",
-        "favorite": "false"
-      },
-      {
-        "name": "Last Stock Company",
-        "code": "LSC",
-        "price": "876",
-        "previousPrice": "765",
-        "exchange": "NYSE",
-        "favorite": "false",
-        "id": 4
-      }    
-    ],
-    "profile": {
-      "name": "typicode"
+  "stocks": [
+    {
+      "id": "2",
+      "name": "Second Stock Company",
+      "code": "SSC",
+      "price": "10",
+      "previousPrice": "20",
+      "exchange": "NSE",
+      "favorite": "false"
+    },
+    {
+      "id": "3",
+      "name": "Last Stock Company",
+      "code": "LSC",
+      "price": "876",
+      "previousPrice": "765",
+      "exchange": "NYSE",
+      "favorite": "false"
+    },
+    {
+      "name": "Last Stock Company",
+      "code": "LSC",
+      "price": "876",
+      "previousPrice": "765",
+      "exchange": "NYSE",
+      "favorite": "false",
+      "id": "4"
+    },
+    {
+      "id": "de0a",
+      "name": "Test Stockss",
+      "code": "T212ss",
+      "price": 21,
+      "previousPrice": 0,
+      "exchange": "NYSE",
+      "favorite": false
+    },
+    {
+      "id": "7b2d",
+      "name": "Test Stock 342",
+      "code": "TS312",
+      "price": 2143,
+      "previousPrice": 0,
+      "exchange": "NYSE",
+      "favorite": false
+    },
+    {
+      "id": "092f",
+      "name": "Test Stock 342a",
+      "code": "TS312a",
+      "price": 2143,
+      "previousPrice": 0,
+      "exchange": "NYSE",
+      "favorite": false
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "password"
+    },
+    {
+      "id": "f71d",
+      "username": "admin1",
+      "password": "123456"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
   }
-  
+}
