@@ -1,13 +1,13 @@
 {
   "stocks": [
     {
-      "id": "2",
-      "name": "Second Stock Company",
+      "name": "Second Stock CO.",
       "code": "SSC",
-      "price": "10",
-      "previousPrice": "20",
+      "price": 10,
+      "previousPrice": 20,
       "exchange": "NSE",
-      "favorite": "false"
+      "favorite": false,
+      "id": "2"
     },
     {
       "id": "3",
@@ -52,7 +52,7 @@
       "price": 2143,
       "previousPrice": 0,
       "exchange": "NYSE",
-      "favorite": false
+      "favorite": true
     }
   ],
   "users": [

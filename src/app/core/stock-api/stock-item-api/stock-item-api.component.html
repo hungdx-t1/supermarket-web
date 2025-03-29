@@ -1,36 +1,66 @@
 <div class="stock-container">
-    <div class="stock-item">
-      <div class="stock-name">
-        {{ stock.name }} (<a [routerLink]="['/api/stock/info', stock.code]">{{
-          stock.code
-        }}</a
-        >)
+  <div class="stock-item">
+    <div class="stock-name">
+      {{ stock.name }} (<a [routerLink]="['/api/stock/info', stock.code]">{{
+        stock.code
+      }}</a
+      >)
+    </div>
+    <div
+      class="stock-price"
+      [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
+    >
+      $ {{ stock.price }}
+    </div>
+    <div class="stock-btnNavigations">
+      <div class="stock-btnFav">
+        <!-- <button (click)="onToggleFavorite($event)" *ngIf="!stock.favorite">
+          Thêm vào mục yêu thích
+        </button> -->
+        <button (click)="onToggleFavorite($event)" *ngIf="stock.favorite">
+          Xóa khỏi mục yêu thích
+        </button>
       </div>
-      <div
-        class="stock-price"
-        [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
-      >
-        $ {{ stock.price }}
+      <div class="stock-edit">
+        <button (click)="onEdit()">Chỉnh sửa</button>
       </div>
-      <div class="stock-btnNavigations">
-        <div class="stock-btnFav">
-          <button (click)="onToggleFavorite($event)" *ngIf="!stock.favorite">
-            Thêm vào mục yêu thích
-          </button>
-          <button (click)="onToggleFavorite($event)" *ngIf="stock.favorite">
-            Xóa khỏi mục yêu thích
-          </button>
-        </div>
-        <div class="stock-edit">
-          <!-- <button (click)="onToggleFavorite($event)">Chỉnh sửa</button> -->
-          <button>Chỉnh sửa</button>
-        </div>
-        <div class="stock-remove">
-          <button (click)="onDeleteHandler($event)">Xóa</button>
-        </div>
+      <div class="stock-remove">
+        <button (click)="onDeleteHandler($event)">Xóa</button>
       </div>
-      <br />
+    </div>
+    <br />
+  </div>
+</div>
+<div class="popup-overlay" *ngIf="isPopupOpen">
+  <div class="popup">
+    <h2>Chỉnh sửa cổ phần</h2>
+    <div class="popup-control">
+      <label for="name">Tên cổ phần:</label>
+      <div>
+      <input id="name" [(ngModel)]="editableStock.name" /></div>
+    </div>
+    <br />
+    <div class="popup-control">
+      <label for="code">Mã cổ phần:</label>
+      <div>
+      <input id="code" [(ngModel)]="editableStock.code" /></div>
+    </div>
+    <br />
+    <div class="popup-control">
+      <label for="price">Giá cổ phần:</label>
+      <div>
+      <input id="price" type="number" [(ngModel)]="editableStock.price" /></div>
+    </div>
+    <br />
+    <div class="popup-control">
+      <label for="favorite">Yêu thích</label>
+      <div>
+      <input id="favorite" type="checkbox" [(ngModel)]="editableStock.favorite" /></div>
+    </div>
+    <br />
+    <div class="popup-buttons">
+      <button (click)="saveEdit()">Lưu</button>
+      <button (click)="closePopup()">Hủy</button>
     </div>
   </div>
-  
-  
+</div>

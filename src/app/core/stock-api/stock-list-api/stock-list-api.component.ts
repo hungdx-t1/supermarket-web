@@ -47,8 +47,7 @@ export class StockListApiComponent implements OnInit {
   }
 
   onToggleFavorite(stock: Stock): void {
-    // console.log('Favorite for stock ', stock, ' was triggered.');
-    // this._stockService.toggleFavorite(stock);
+    console.log('Chỉnh độ yêu thích:', stock);
   }
 
   onUpdate(stock: Stock): void {
@@ -64,6 +63,14 @@ export class StockListApiComponent implements OnInit {
         this.getAllStocks();
       });
     }
+  }
+
+  onUpdateStock(updatedStock: Stock): void {
+    this.stocks$ = this.stocks$.pipe(
+      map(stocks =>
+        stocks.map(stock => (stock.code === updatedStock.code ? updatedStock : stock))
+      )
+    );
   }
 
   isPositiveChange(stock: any): boolean {

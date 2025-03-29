@@ -32,7 +32,7 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe(success => {
       if (success) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       } else {
         this.errorMessage = 'Sai tài khoản hoặc mật khẩu!';
       }

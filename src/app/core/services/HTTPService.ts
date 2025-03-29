@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, switchMap, throwError } from 'rxjs';
+import { Stock } from '../models/stock';
 
 @Injectable({
   providedIn: 'root',
@@ -42,9 +43,31 @@ export class HTTPServiceService {
     );
   }
 
-  public updateStock(body: any) {
-    const url = `${this.REST_API_SERVER}/stocks`;
-    return this.http.put<any>(url, body);
+  // public updateStock(stock: Stock) Observable<any> {
+  //   // const url = `${this.REST_API_SERVER}/stocks`;
+  //   // return this.http.put<any>(url, body);
+
+  //   return this.findStockIDByCode(stock.code).pipe(
+  //     switchMap(id => {
+  //       if (id !== null) {
+  //         return this.http.put<any>(`${this.REST_API_SERVER}/stocks/${id}`, stock, this.httpOptions);
+  //       } else {
+  //         return throwError(() => new Error(`Không tìm thấy stock với code: ${stock.code}`));
+  //       }
+  //     })
+  //   );
+  // }
+
+  public updateStock(stock: Stock): Observable<any> {
+    return this.findStockIDByCode(stock.code).pipe(
+      switchMap(id => {
+        if (id !== null) {
+          return this.http.put<any>(`${this.REST_API_SERVER}/stocks/${id}`, stock, this.httpOptions);
+        } else {
+          return throwError(() => new Error(`Không tìm thấy stock với code: ${stock.code}`));
+        }
+      })
+    );
   }
 
   public findStockByCode(code: string): Observable<any> {
