@@ -1,27 +1,41 @@
 .web-logo svg {
-    width: 120px;
-    cursor: pointer;
+  width: 120px;
+  cursor: pointer;
 }
 
 .header-layout {
-    display: flex; /* hiển thị trong cùng 1 hàng */
-    justify-content: space-between; /* được cách nhau sau mỗi div */
-    padding: .4rem .8rem;
-    box-shadow: rgb(0, 0, 0, 16) 1px 1px 10px 0px;
+  display: flex; /* hiển thị trong cùng 1 hàng */
+  justify-content: space-between; /* được cách nhau sau mỗi div */
+  padding: 0.4rem 0.8rem;
+  box-shadow: rgb(0, 0, 0, 16) 1px 1px 10px 0px;
+
+  /*
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; 
+  z-index: 1000; 
+
+  */
 }
 
 .header-layout .group-navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.4rem;
 }
 
 .group-navigation .btn-navigation {
-    background-image: linear-gradient(to right, #d434b0, #8029fc); /* đổ màu từ hồng sang tím */
-    display: flex;
-    justify-content: center;
-    border-radius: 6px;
-    align-items: center;
-    cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #d434b0,
+    #8029fc
+  ); /* đổ màu từ hồng sang tím */
+  display: flex;
+  justify-content: center;
+  border-radius: 6px;
+  align-items: center;
+  cursor: pointer;
 }

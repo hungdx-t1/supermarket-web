@@ -46,13 +46,22 @@
       "favorite": false
     },
     {
-      "id": "092f",
-      "name": "Test Stock 342a",
-      "code": "TS312a",
-      "price": 2143,
+      "name": "Test Stock 5",
+      "code": "TSC5",
+      "price": 124,
       "previousPrice": 0,
       "exchange": "NYSE",
-      "favorite": true
+      "favorite": false,
+      "id": "0661"
+    },
+    {
+      "id": "238a",
+      "name": "Test Stock 5",
+      "code": "TSC5",
+      "price": 123,
+      "previousPrice": 0,
+      "exchange": "NYSE",
+      "favorite": false
     }
   ],
   "users": [
@@ -69,6 +78,11 @@
     {
       "id": "f71d",
       "username": "admin1",
+      "password": "123456"
+    },
+    {
+      "id": "ed2d",
+      "username": "vinhhung2004",
       "password": "123456"
     }
   ],

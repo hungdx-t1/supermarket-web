@@ -1,0 +1,138 @@
+/* .link,
+.link a {
+  padding: 10px;
+}
+
+.link,
+a.active {
+  background-color: grey;
+}
+.nav-height {
+  min-height: 50px !important;
+  height: 50px !important;
+  background-color: aqua;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content-move-right {
+  margin-left: 170px !important;
+  transition: ease 0.2s;
+}
+
+.content-move-left {
+  margin-left: 10px !important;
+  transition: ease 0.1s;
+}
+
+.active-link {
+  background: blue;
+  color: white;
+}
+
+.mat-button:hover {
+  background: blue;
+  color: white;
+}
+
+.nav-list {
+    justify-content: center;
+} */
+
+/* styles.scss hoặc app.component.scss */
+
+.nav-height {
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  padding: 0 1rem;
+  background-color: aqua;
+}
+
+mat-toolbar h1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  flex-grow: 1;
+  color: white;
+}
+
+.menu-spacer {
+  flex: 1;
+}
+
+a[mat-button] {
+  color: white;
+  font-weight: 500;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+a.active-link {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+mat-sidenav-container {
+  height: 100vh;
+}
+
+mat-sidenav {
+  width: 230px;
+  background-color: #f4f6f8;
+  padding: 1rem 0;
+}
+
+mat-nav-list a {
+  font-weight: 500;
+  color: #333;
+}
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+mat-nav-list a:hover {
+  background-color: #e0e0e0;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+.content-move-left,
+.content-move-right {
+  transition: margin-left 0.3s ease;
+}
+
+.content-move-left {
+  margin-left: 0;
+}
+
+.content-move-right {
+  margin-left: 230px;
+}
+.menu-header {
+  display: flex;
+}
+
+svg {
+  width: 120px;
+  cursor: pointer;
+  padding-top: 6px;
+  padding-left: 10px;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.account-nav {
+  color: white;
+}
